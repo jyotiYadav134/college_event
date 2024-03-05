@@ -1,3 +1,41 @@
+<?php 
+session_start();
+include "../head/top.php" ;
+include '../db/dbconnect.php';
+
+if(isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $inputUsertype = $_POST['usertype'];
+
+    if($inputUsertype == 1){
+        $sql="SELECT * FROM admin WHERE username_id= '$username' and password='$password' ";
+        $result=mysqli_query($conn,$sql); 
+        $num=mysqli_num_rows($result);
+        
+        if($num > 0) { 
+            $_SESSION['username'] = $username; 
+            header("Location: ../admin/admin_dashboard.php");
+            exit();
+        } else {
+            echo "Invalid admin credentials";
+        }
+        
+    } else if ($inputUsertype == 2){
+        $sql="SELECT * FROM student where s_user_id='$username' and Password='$password'";
+        $result=mysqli_query($conn,$sql);
+        
+        if(mysqli_num_rows($result) > 0) { 
+            $_SESSION['username'] = $username; 
+            header("Location: ../users/student_dashboard.php"); 
+            exit(); 
+        } else {
+            echo "Invalid student credentials";
+        }
+    } 
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,42 +144,3 @@ select {
     </div>
 </body>
 </html>
-<?php
-include '../db/dbconnect.php';
-session_start();
-if(isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $inputUsertype = $_POST['usertype'];
-    if($inputUsertype == 1){
-        $_SESSION['username'] = $username;
-        $_SESSION['usertype'] = $inputUsertype;
-        $sql="SELECT * FROM admin ";
-        $result=mysqli_query($conn,$sql);
-        $row=mysqli_fetch_assoc($result);
-        $dbuser=$row['username_id'];
-        $dbpass=$row['password'];
-        if($username == $dbuser && $password==$dbpass){
-            header("../admin/admin_dashboard.php");  
-            
-        }else{
-            echo "invalid data";
-        }
-        
-    } else if ($inputUsertype == 2){
-        $_SESSION['username'] = $username;
-        $_SESSION['usertype'] = $inputUsertype;
-        $sql="SELECT * FROM student ";
-        $result=mysqli_query($conn,$sql);
-        while($row=mysqli_fetch_assoc($result)){
-            $dbUser=$row['s_user_id'];
-            $dbPass=$row['Password'];
-            if($username == $dbUser && $password==$dbPass){
-                header("../users/student_dashboard.php");    
-            }
-        }
-
-    } 
-
-}
-?>

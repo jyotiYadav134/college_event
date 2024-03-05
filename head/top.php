@@ -10,7 +10,7 @@
 }
 .bgImage {
     padding:10px;
-    background-image: url(images/cs03.jpg);
+    background-image: url(../images/cs03.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -47,8 +47,8 @@ a{
            <div  class="right">
                     <a href = "../starting page/index.php"><strong>Home</strong></a>
                     <a href = "../auth/register.php"><strong>Register</strong></a>
-                    <a href = "contact.php"><strong>Contact Us</strong></a>
-                    <a href = "aboutus.php"><strong>About us</strong></a>
+                    <a href = "../starting page/contact.php"><strong>Contact Us</strong></a>
+                    <a href = "../starting page/aboutus.php"><strong>About us</strong></a>
                     <a href = "../auth/login.php"> <strong>Login</strong></a>   
 </div>
             <div class = "b">

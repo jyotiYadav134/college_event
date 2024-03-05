@@ -82,9 +82,9 @@
         <section>
             <div class="social-icons">
                 Follow Us:<br>
-                <a href="https://www.facebook.com/DAVCollegeNP/"><img src="images/facebook.png" alt="Facebook"></a>
-                <a href="https://www.instagram.com/davcollegenepal/"><img src="images/instagram.png" alt="Instagram"></a>
-                <a href="https://www.youtube.com/@D.A.V.College"><img src="images/youtube.png" alt="YouTube"></a>
+                <a href="https://www.facebook.com/DAVCollegeNP/"><img src="../images/facebook.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/davcollegenepal/"><img src="../images/instagram.png" alt="Instagram"></a>
+                <a href="https://www.youtube.com/@D.A.V.College"><img src="../images/youtube.png" alt="YouTube"></a>
             </div>
         </section>
     </footer>

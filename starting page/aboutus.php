@@ -1,6 +1,4 @@
-<?php
-include 'header.php';
-?>
+<?php include "../head/top.php" ?>
 <!DOCTYPE html>
 <html>
 
@@ -34,6 +32,5 @@ hr.blueline {
 
 </body>
 </html>
-<?php
-include 'footer.php';
-?>
+
+<?php include "../footer/footer.php" ?>

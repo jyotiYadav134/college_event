@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php include "../head/top.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,7 +112,7 @@ if(isset($_POST['register'])){
     $pass=$_POST['pass'];
     $status=$_POST['status'];
     try{
-        $sql="INSERT INTO sstudent(student_name, phone, Email, Password, s_user_id, semester, student_status) 
+        $sql="INSERT INTO student(student_name, phone, Email, Password, s_user_id, semester, student_status) 
         values('$name','$phone','$email','$pass','$uname','$semester','$status')";
         $result=mysqli_query($conn,$sql);
         if($result){
@@ -126,4 +126,6 @@ if(isset($_POST['register'])){
 
 </body>
 </html>
-<?php include 'footer.php'; ?>
+
+<?php include "../footer/footer.php" ?>
+

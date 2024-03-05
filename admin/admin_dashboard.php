@@ -84,13 +84,29 @@
             <label for="image">Event Image:</label>
             <input type="file" id="image" name="image" required>
 
-            <input type="submit" name="event" value="Add Event">
+            <input type="submit" name="add" value="Add Event">
         </form>
     </div>
 <?php
-if(isset($_POST['event'])){
-    include './db/dbconnect.php';
-}
+include '../db/dbconnect.php';
+    if(isset($_POST['add'])){
+        $name=$_POST['name'];
+        $date=$_POST['date'];
+        $time=$_POST['time'];
+        $venue=$_POST['venue'];
+        $location=$_POST['location'];
+        $status=$_POST['status'];
+        $Picture = $_FILES['image']['name'];
+        $temp = $_FILES['image']['tmp_name'];
+        $folder = "pics/" . $Picture;
+        move_uploaded_file($temp, $folder);
+        $sql="INSERT INTO eevent(venue,e_time,e_status,e_picture,e_location) values
+        ('$venue','$time','$status','$folder','$location') ";
+        $result=mysqli_query($conn,$sql);
+        if($result){
+            echo "Event added successfully";
+        }
+    }
 ?>
 </body>
 </html>
