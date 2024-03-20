@@ -14,11 +14,11 @@ hr.blueline {
 }
 #bj
 {
-  font-size: 22px;
+  font-size: 40px;
 }
 </style>
 
-<body style="background-color:#b3e0ff ">
+<body style="background-color:white ">
   <hr class="blueline">
   <div>
   

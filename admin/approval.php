@@ -1,10 +1,18 @@
 <?php
 include '../db/dbconnect.php';
-if($_GET['request_id']){
-    $r_id=$_GET['request_id'];
+if($_GET['std_id']){
+    $s_id=$_GET['std_id'];
 }
-$sql="UPDATE rent SET r_status='approved',is_returned = 0 WHERE r_id='$r_id'";
+$sql="SELECT * FROM student where student_id='$s_id'";
 $result=mysqli_query($conn,$sql);
-header('Location:rental_request.php');
-
+$row=mysqli_fetch_assoc($result);
+if($row['student_status']=='pending_volunteer'){
+    $ssql="UPDATE student SET student_status='volunteer' WHERE student_id='$s_id'";
+    $rresult=mysqli_query($conn,$ssql);
+}else if($row['student_status']=='pending_participant'){
+    $ssql="UPDATE student SET student_status='participant' WHERE student_id='$s_id'";
+    $rresult=mysqli_query($conn,$ssql);
+}
+header('Location:admin_request.php');
 ?>
+

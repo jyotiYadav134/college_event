@@ -11,27 +11,42 @@
     <h1>Welcome  <?php 
     include '../db/dbconnect.php';
     session_start();
-    $user=$_SESSION['username'];
+    $user=$_SESSION['username'] ;
     echo $user;
-    $sql ="SELECT * from student where s_user_id='$user'";
-    $result=mysqli_query($conn,$sql);
-    $row=mysqli_fetch_assoc($result);
+    $ssql ="SELECT * from student where s_user_id='$user'";
+    $rresult=mysqli_query($conn,$ssql);
+    $rrow=mysqli_fetch_assoc($rresult);
     ?> 
   </h1>
   <div class="detail">
     <p>Email: <?php
-    echo $row['Email'];
+    echo $rrow['Email'];
     ?>  </p>
     <p>
     Semester: <?php
-    echo $row['semester'];
+    echo $rrow['semester'];
     ?>  
     </p>
   </div>
+ 
+
+  <div class="req">
+    <h2>Become a volunteer or participant</h2>
+    <button><a href="student_request.php">register</a></button>
   </div>
+  </div>
+   <div> 
+            <?php
+            $sql="SELECT * FROM event ";
+            $result=mysqli_query($conn,$sql);
+            $num=mysqli_num_rows($result);
+            while($row=mysqli_fetch_assoc($result)){
+            ?>
+            <img  src="../admin/<?php echo $row['e_picture']; ?>">
+              
+            <?php
+            }
+            ?>
+        </div>
 </body>
 </html>
-<<?php
-include '../db/dbconnect.php';
-
-?>

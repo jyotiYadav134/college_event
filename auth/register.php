@@ -62,7 +62,7 @@ input[type="submit"]:hover {
 <body>
     <div class="container">
         <h2>Student Registration</h2>
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" name="name" id="name" required>
@@ -87,14 +87,11 @@ input[type="submit"]:hover {
                 <label for="pass">Password:</label>
                 <input type="password" name="pass" id="pass" required>
             </div>
-            <div class="form-group">
-                <label for="status">Status:</label>
-                <select name="status" id="status" required>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                    <option value="graduated">Graduated</option>
-                </select>
+            <div>
+            <label for="image">Image:</label>
+                <input type="file" name="image" id="image" required>
             </div>
+            
             <div class="form-group">
                 <input type="submit" name="register" value="Register">
             </div>
@@ -110,10 +107,14 @@ if(isset($_POST['register'])){
     $email=$_POST['email'];
     $uname=$_POST['uname'];
     $pass=$_POST['pass'];
-    $status=$_POST['status'];
+    $Picture = $_FILES['image']['name'];
+        $temp = $_FILES['image']['tmp_name'];
+        $folder = "../admin/pics/" . $Picture;
+        move_uploaded_file($temp, $folder);
     try{
-        $sql="INSERT INTO student(student_name, phone, Email, Password, s_user_id, semester, student_status) 
-        values('$name','$phone','$email','$pass','$uname','$semester','$status')";
+     
+        $sql="INSERT INTO student(student_name, phone, Email, Password, s_user_id, semester,s_picture) 
+        values('$name','$phone','$email','$pass','$uname','$semester','$folder')";
         $result=mysqli_query($conn,$sql);
         if($result){
             echo "Registered";

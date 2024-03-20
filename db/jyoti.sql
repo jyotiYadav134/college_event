@@ -22,7 +22,7 @@ CREATE TABLE  student (
     Password VARCHAR(255) NOT NULL,
     s_user_id VARCHAR(50) NOT NULL,
     semester VARCHAR(20) NOT NULL,
-    student_status VARCHAR(20) NOT NULL
+    student_status VARCHAR(20) default NULL
 );
 create table admin(
 	admin_id int PRIMARY KEY AUTO_INCREMENT,
@@ -30,7 +30,7 @@ create table admin(
     password varchar(255) not null
 );
 
-create table eevent(
+create table event(
 event_id int PRIMARY KEY AUTO_INCREMENT,
     venue varchar(255) not null,
     e_time time not null,

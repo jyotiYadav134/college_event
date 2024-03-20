@@ -13,7 +13,7 @@
         footer {
             background-color: #9DD9F3; 
             color: #fff;
-            padding: 20px;
+            padding: 30px;
             display: flex;
             justify-content: space-around;
             align-items: flex-start;
