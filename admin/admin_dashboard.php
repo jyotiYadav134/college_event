@@ -63,8 +63,8 @@ footer {
    ?>
 
     <main>
-        <center><h2>Welcome to the Admin Dashboard</h2></center>
-        <p>Choose an option from the navigation menu to get started.</p>
+        <center><h2>Welcome to the Admin Dashboard</h2>
+        <p>Choose an option from the navigation menu to get started.</p></center>
         
     </main>
     <?php

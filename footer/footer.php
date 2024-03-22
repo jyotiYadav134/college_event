@@ -6,14 +6,14 @@
     <title>Document</title>
     <style>
         body {
-            margin: 0;
+            margin: 10;
             padding: 0;
             background-color: #f0f0f0;
         }
         footer {
             background-color: #9DD9F3; 
             color: #fff;
-            padding: 30px;
+            padding: 50px;
             display: flex;
             justify-content: space-around;
             align-items: flex-start;
@@ -22,7 +22,7 @@
         footer section {
             flex: 1;
             margin-right: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         footer section:last-child {
             margin-right: 0;

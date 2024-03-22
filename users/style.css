@@ -1,5 +1,5 @@
 .container {
-    max-width: 400px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -20,7 +20,7 @@
   }
   
   button {
-    width:50%;
+    width:20%;
     padding: 10px;
     background-color: #007bff;
     color: #fff;

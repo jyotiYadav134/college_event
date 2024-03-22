@@ -1,3 +1,6 @@
+<?php
+include 'admin_header.php';
+include 'session.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,36 +16,6 @@
             padding: 0;
         }
         
-header {
-    background-color: #9DD9F3;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-
-header h1 {
-    margin: 0;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
 
         .container {
             max-width: 600px;
@@ -90,16 +63,7 @@ nav ul li a:hover {
     </style>
 </head>
 <body>
-<header>
-        <h1>Admin Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="index.php">Dashboard</a></li>
-                <li><a href="event.php">Events</a></li>
-                <li><a href="students.php">Students</a></li>
-            </ul>
-        </nav>
-    </header>
+
     <div class="container">
         <h2>Add Event</h2>
         <form action="" method="POST" enctype="multipart/form-data">
@@ -129,6 +93,7 @@ nav ul li a:hover {
     </div>
 <?php
 include '../db/dbconnect.php';
+
     if(isset($_POST['add'])){
         $name=$_POST['event_name'];
         $date=$_POST['event_date'];

@@ -46,13 +46,19 @@ $sql="SELECT * FROM student";
 $result=mysqli_query($conn,$sql);
 while($row=mysqli_fetch_assoc($result)){
     echo "<br>";    
+    $eid=$row['e_id'];
+    $ssql="SELECT * from event where event_id='$eid'";
+    $rresult=mysqli_query($conn,$ssql);
   echo "Name: ". $row['student_name'];
   echo "<br>";
+  $rrow=mysqli_fetch_assoc($rresult);
+    
+  echo "<br>";
   if($row['student_status']=='pending_volunteer'){
-    echo "Wants to be: Volunteer";
+    echo "Wants to be: Volunteer for ".$rrow['event_name'];
   }elseif($row['student_status']=='pending_participant'){
-    echo "Wants to be: Participant";
-  }
+    echo "Wants to be: Participant for".$rrow['event_name'];
+   }
   if ($row['student_status'] == "volunteer" || $row['student_status'] == "participant"): ?>
       <span>Approved</span>
   <?php elseif ($row['student_status'] == 'rejected'): ?>

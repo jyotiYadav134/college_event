@@ -3,19 +3,54 @@ include 'admin_header.php';
 include 'session.php';
 ?>
 <style>
-    body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #007bff;
+        margin-bottom: 30px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #e9ecef;
+    }
 
 
-img{
-      width:200px;
-      height:100px;
-      object-fit:cover;
-}
-.addevent {
+    .addevent {
   background-color: #007bff; /* Blue */
   border: none;
   color: white;
@@ -31,15 +66,35 @@ img{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.addevent:hover {
-  background-color: #0056b3; /* Darker Blue */
-}
+    .add-event-btn:hover {
+        background-color: #0056b3;
+    }
 
+    .action-links {
+        display: flex;
+        justify-content: space-between;
+    }
 
+    .action-links a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
 
-main {
-    padding: 20px;
-}</style>
+    .action-links a:hover {
+        color: #0056b3;
+    }
+
+    .fa-edit, .fa-trash-alt {
+        margin-right: 5px;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 4px;
+    }</style>
 
 <body>
 
@@ -68,10 +123,11 @@ main {
           $result = mysqli_query($conn, $sql);
           $num = mysqli_num_rows($result);
           if ($num > 0) {
+            $i = 1;
             while ($row = mysqli_fetch_assoc($result)) {
              ?>
               <tr>
-                <td><?php echo $row['event_id']; ?></td>
+                <td><?php echo $i; ?></td>
                 <td> <?php echo $row['event_name']; ?> </td>
                 <td> <?php echo $row['event_date']; ?> </td>
                 <td> <?php echo $row['e_time']; ?> </td>
@@ -85,7 +141,7 @@ main {
               </tr>
  
 
-          <?php }
+          <?php $i++; }
           }
           ?>
         </table>

@@ -144,3 +144,7 @@ select {
     </div>
 </body>
 </html>
+<?php
+
+include '../footer/footer.php';
+?>

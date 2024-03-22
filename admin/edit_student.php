@@ -26,8 +26,7 @@
         }
         input[type="text"],
         input[type="number"],
-        input[type="password"],
-        input[type="email"],
+       
         input[type="file"],
         input[type='tel'],
         input[type="submit"] {
@@ -50,29 +49,62 @@
     </style>
 </head>
 <body>
+<?php
+    if(isset($_GET['student_id']))
+    {include '../db/dbconnect.php';
+        include 'session.php';
+        include 'admin_header.php';
+        $student_id=$_GET['student_id'];
+       
+        $select_student="select * from student where student_id='$student_id'";
+        $result_select=mysqli_query($conn,$select_student);
+        if(mysqli_num_rows($result_select))
+        {
+            while($row=mysqli_fetch_assoc($result_select))
+            {
+                $std_id=$row['student_id'];
+               
+                $std_name=$row['student_name'];
+               
+                $std_phone=$row['phone'];
+               
+              
+                $std_user_id=$row['s_user_id'];
+             
+                $std_semester=$row['semester'];
+             
+                $std_status=$row['student_status'];
+            
+                $std_picture= basename($row['s_picture']);
+              
+                
+          
+                
+            }
+        }
+    }
+        
+    ?>
     
     <form action="" method="POST" enctype="multipart/form-data">
-    <h1>EDIT</h1>
+    <h1>EDIT STUDENT</h1>
         <label for="name">Name:
-            <input type="text" name="name" id="name" >
+            <input type="text" name="name" id="name"  value="<?php echo $std_name?>" >
         </label>
         <label for="phone">Phone:
-            <input type="tel" name="phone" id="phone">
+            <input type="tel" name="phone" id="phone" value="<?php  echo $std_phone?>">
         </label>
         <label for="semester">Semester:
-            <input type="text" name="semester" id="semester">
+            <input type="text" name="semester" id="semester" value="<?php echo $std_semester?>">
         </label>
         <label for="username">Username:
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username" value="<?php echo $std_user_id?>">
         </label>
-        <label for="pass">Password:
-            <input type="password" name="pass" id="pass">
-        </label>
-        <label for="mail">Mail:
-            <input type="email" name="mail" id="mail">
+      
         </label>
         <label for="image">Image:
-            <input type="file" name="image" id="image" accept="image/*">
+            <input type="file" name="image" id="image" accept="image/"*>
+            Existing Image: <?php echo $std_picture ?>
         </label>
         <input type="submit" name="edit" value="Edit">
     </form>
@@ -83,22 +115,26 @@
         $phone=$_POST['phone'];
         $semester=$_POST['semester'];
         $username=$_POST['username'];
-        $password=$_POST['pass'];
-        $mail=$_POST['mail'];
+       
         $Picture = $_FILES['image']['name'];
         $temp = $_FILES['image']['tmp_name'];
         $folder = "pics/" . $Picture;
         move_uploaded_file($temp, $folder);
+        echo $folder;
         $sid=$_GET['student_id'];
-        $sql="UPDATE student set student_name='$name',phone='$phone',Email='$mail',Password='$password',s_user_id='$username',semester='$semester',s_picture='$folder'
-        WHERE student_id='$sid'";
+        $sql="UPDATE student set student_name='$name',phone='$phone',s_user_id='$username',semester='$semester',s_picture='$folder'";
+   
         $result=mysqli_query($conn,$sql);
         if($result){
             echo "edited successfully";
         }
 
     }
-    
+ 
+    ?>
+    <?php
+include '../footer/footer.php';
+
     ?>
 </body>
 </html>

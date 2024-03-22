@@ -4,21 +4,77 @@ include 'session.php';
 ?>
 <style>
     body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+    }
 
+    .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-img{
-      width:200px;
-      height:100px;
-      object-fit:cover;
-}
+    h1 {
+        text-align: center;
+        color: #007bff;
+        margin-bottom: 30px;
+    }
 
-main {
-    padding: 20px;
-}</style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #e9ecef;
+    }
+
+    .action-links {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .action-links a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .action-links a:hover {
+        color: #0056b3;
+    }
+
+    .fa-edit, .fa-trash-alt {
+        margin-right: 5px;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+</style>
 
     <body>
     <div class="container"> 
@@ -33,8 +89,9 @@ main {
     <th>Semester</th>
     <th>Password</th>
     <th>Username</th>
-    <th>Mail</th>
+    <th>Task</th>
     <th>Image</th>
+    
     <th>Action</th>
     
           </tr>
@@ -45,6 +102,7 @@ main {
           $result = mysqli_query($conn, $sql);
           $num = mysqli_num_rows($result);
           if ($num > 0) {
+            $i = 1;
             while ($row = mysqli_fetch_assoc($result)) {
              ?>
               <tr>
@@ -53,15 +111,17 @@ main {
                 <td> <?php echo $row['phone']; ?> </td>
                 <td> <?php echo $row['semester']; ?> </td>
                 <td> <?php echo $row['Password']; ?> </td>
-                <td> <?php echo $row['s_user_id']; ?> </td> 
-                <td> <?php echo $row['Email']; ?> </td>
+                <td> <?php echo $row['s_user_id']; ?> </td>
+                <td> <?php echo $row['student_status']; ?> </td>
+
+
                 <td><img  src="<?php echo $row['s_picture']; ?>"></td>
                 
                 <td><a href="edit_student.php?student_id=<?php echo $row['student_id'] ?>">Edit</a> |
                 <a href="delete_student.php?student_id=<?php echo $row['student_id'] ?>">Delete</a></td>
               </tr>
 
-          <?php }
+              <?php $i++; }
           }
           ?>
         </table>

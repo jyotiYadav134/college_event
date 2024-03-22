@@ -30,11 +30,6 @@
   </div>
  
 
-  <div class="req">
-    <h2>Become a volunteer or participant</h2>
-    <button><a href="student_request.php">register</a></button>
-  </div>
-  </div>
    <div> 
             <?php
             $sql="SELECT * FROM event ";
@@ -44,6 +39,11 @@
             ?>
             <img  src="../admin/<?php echo $row['e_picture']; ?>">
               
+  <div class="req">
+    <h2>Become a volunteer or participant</h2>
+    <button><a href="student_request.php?e_id=<?php echo $row['event_id']?>">register</a></button>
+  </div>
+  </div>
             <?php
             }
             ?>

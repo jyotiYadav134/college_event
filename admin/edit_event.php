@@ -53,49 +53,17 @@
     padding: 20px;
     text-align: center;
 }
-
-header h1 {
-    margin: 0;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-    </style>
+</style>
 </head>
 <body>
-<header>
-        <h1>Admin Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="index.php">Dashboard</a></li>
-                <li><a href="event.php">Events</a></li>
-                <li><a href="students.php">Students</a></li>
-            </ul>
-        </nav>
-    </header>
+
     <?php
     if(isset($_GET['event_id']))
     {include '../db/dbconnect.php';
+        include 'admin_header.php';
+        include 'session.php';
         $event_id=$_GET['event_id'];
-        echo $event_id;
+       
         $select_event="select * from event where event_id='$event_id'";
         $result_select=mysqli_query($conn,$select_event);
         if(mysqli_num_rows($result_select))
@@ -119,7 +87,7 @@ nav ul li a:hover {
         
     ?>
     <form action="" method="POST" enctype="multipart/form-data">
-    <h1>EDIT</h1>
+    <h1>EDIT EVENT</h1>
     <label for="name">Event Name:</label>
             <input type="text" value='<?php echo $evt_name ?>' id="name" name="event_name">
 
@@ -164,7 +132,7 @@ nav ul li a:hover {
         $sql="UPDATE event set venue='$venue',e_time='$time',e_picture='$folder', e_location='$location',event_name='$name',description='$description',event_date='$date' ";
         $result=mysqli_query($conn,$sql);
         if($result){
-            echo "Event added successfully";
+            echo "Edited successfully";
         }
     }
 ?>

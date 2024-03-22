@@ -97,8 +97,14 @@ label {
     }else{
       $request_type='pending_participant';
     }
+    
     $sql = "UPDATE student set student_status='$request_type' where s_user_id='$currentUser'";
     $result=mysqli_query($conn,$sql);
+    if($_GET['e_id']){
+      $e_id=$_GET['e_id'];
+    }
+    $ssql="UPDATE student set e_id='$e_id' where s_user_id='$currentUser' ";
+    $rresult=mysqli_query($conn,$ssql);
     if($result)
         header("Location: student_dashboard.php");
 }

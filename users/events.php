@@ -33,19 +33,27 @@
 <body>
     <h2>Event List</h2>
     <div class="event-container">
+        <form action="">
         <?php
         include '../db/dbconnect.php';
         $sql = "SELECT * FROM event";
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
+            $picture=basename($row ['e_picture']);
+            $picture_full_path = '../admin/pics/' . $picture;
             echo '<div class="event-card">';
             echo '<h3>' . $row['venue'] . '</h3>';
             echo '<p><strong>Time:</strong> ' . $row['e_time'] . '</p>';
             echo '<p><strong>Location:</strong> ' . $row['e_location'] . '</p>';
-            echo '<img src='../admin/event.php".$row['e_picture'] .';
+            echo '<img style="height:10rem; width:7rem;" src="' . $picture_full_path . '">';
+            ?>
+            <?php
+            //echo $picture;
+            // echo ;
             echo '</div>';
         }
         ?>
     </div>
+    
 </body>
 </html>
