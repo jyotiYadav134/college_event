@@ -3,60 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Student Dashboard</title>
     <style>
-.body{
-    margin:0;
-}
-.bgImage {
-    padding:10px;
-    background-image: url(../images/cs03.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-a{
-    text-decoration:none;
-    color:white;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+    
+        }
 
-}
-.b{
-    color:white;
-    text-align:center;
-}
+        header {
+            background-color: skyblue;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            
+        }
 
-.right{
-    margin:0;
-    display: flex;
-    float: right;
-    gap: 20px;
-    }
-    .b{
-        position: center;
-    }
-</style>
+        .ccontainer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            
+        }
+
+        .nav-links {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .nav-links li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .nav-links li:last-child {
+            margin-right: 0;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-<body class="body">
-<header class="bgImage" > 
-        <div>
-                <a class = "brand">
-                   <h2>College Event Management System</h2>
-                </a>
+<body>
+    <header>
+        <div class="ccontainer">
+            <h1>Student Dashboard</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="student_dashboard.php">Profile</a></li>
+                    <li><a href="events.php">Event List</a></li>
+                    <li><a href="../auth/logout.php">Logout</a></li>
+                </ul>
+            </nav>
         </div>
-       
-           <div  class="right">
-                    <a href = "events.php"><strong>Event</strong></a>
-                    <a href = "../starting page/contact.php"><strong>Contact Us</strong></a>
-                    <a href = "../starting page/aboutus.php"><strong>About us</strong></a>
-                    <a href="../auth/logout.php"></a><strong>Logout</strong></a>   
-</div>
-            <div class = "b">
-                <h1>Explore Your Favorite Event</h1>
-                <p style="font-style: bold">"Limitation-It's just your imagination,so just stop thinking about limitation and think about your goal and run towards it to acheive the peak of your goal:)"</p>  
-            </div>
-</header>
+    </header>
 </body>
 </html>
-<?php
-include '../footer/footer.php';
-?>

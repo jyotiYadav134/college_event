@@ -1,57 +1,117 @@
-<?php
-include "../head/top.php";
-?>
+<?php include "../head/top.php" ?>
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>College Event Management System</title>
-        <style>
-            img{
-                width:50%;
-            }
-            .grid{
-                display:grid;
-                
-            }
-            body {
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Event Management System</title>
+    <style>
+       body {
+    margin: 0;
     font-family: Arial, sans-serif;
+}
+
+nav ul {
+    list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
 }
 
-.container {
-    max-width: 800px;
-    margin: 50px auto;
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.landing {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.landing h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+}
+
+.events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.event {
+    width: 300px;
+    border: 1px solid #ccc;
+    margin: 10px;
     padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-h2 {
+.event:hover {
+    transform: translateY(-5px);
+}
+
+.event h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.event p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #666;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: skyblue; /* Changed to sky blue */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+footer {
+    background-color: skyblue; /* Changed from black to sky blue */
+    color: #fff;
+    padding: 20px 0;
     text-align: center;
-    color: white;
 }
+ </style>
+</head>
+<body>
+ 
 
-.placeholder-text {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #555;
-}
-
-        </style>
-    </head>
-    <body>
-       
-    <div class="container">
-        <h2color: blacK>Upcoming Events</h2>
-        <p class="placeholder-text">Get ready for an unforgettable lineup of events coming your way! 🎉 From electrifying concerts to thought-provoking seminars, we're gearing up to bring you a calendar packed with excitement and opportunities. Keep your eyes peeled as we unveil our upcoming events, complete with all the details you need to join in on the fun! Stay tuned and mark your calendars - you won't want to miss out! ✨</p>
-    </div>
+    <section class="landing">
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <div class="events">
+                <!-- Event listings will be dynamically inserted here -->
+                <!-- Sample event listing -->
+                <div class="event">
+                    <h3>Event Title</h3>
+                    <p>Date: January 1, 2025</p>
+                    <p>Time: 10:00 AM - 2:00 PM</p>
+                    <p>Venue: College Auditorium</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
-
-<?php
-
-include '../footer/footer.php';
-?>
+<?php include "../footer/footer.php" ?>

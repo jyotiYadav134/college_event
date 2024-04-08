@@ -50,7 +50,7 @@ if(isset($_POST['login'])) {
     padding: 0;
 }
 
-.container {
+.ccontainer {
     max-width: 400px;
     margin: 50px auto;
     background-color: #fff;
@@ -115,7 +115,7 @@ select {
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="ccontainer">
         <h1>Login</h1>
         <div class="wrapper">
             <form method="post" class="login-form">

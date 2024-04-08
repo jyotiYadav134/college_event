@@ -3,58 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>College Event Management System</title>
     <style>
-.body{
-    margin:0;
-}
-.bgImage {
-    padding:10px;
-    background-image: url(../images/cs03.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-a{
-    text-decoration:none;
-    color:white;
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
 
-}
-.b{
-    color:white;
-    text-align:center;
-}
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
 
-.right{
-    margin:0;
-    display: flex;
-    float: right;
-    gap: 20px;
-    }
-    .b{
-        position: center;
-    }
-</style>
+        header {
+            background-color: skyblue;
+            color: #fff;
+            padding: 20px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            float: right;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: lightblue;
+        }
+    </style>
 </head>
-<body class="body">
-<header class="bgImage" > 
-        <div>
-                <a class = "brand">
-                   <h2>College Event Management System</h2>
-                </a>
-        </div>
-       
-           <div  class="right">
-                    <a href = "../starting page/index.php"><strong>Home</strong></a>
-                    <a href = "../auth/register.php"><strong>Register</strong></a>
-                    <a href = "../starting page/contact.php"><strong>Contact Us</strong></a>
-                    <a href = "../starting page/aboutus.php"><strong>About us</strong></a>
-                    <a href = "../auth/login.php"> <strong>Login</strong></a>   
-</div>
-            <div class = "b">
-                <h1>Explore Your Favorite Event</h1>
-                <p style="font-style: bold">"Limitation-It's just your imagination,so just stop thinking about limitation and think about your goal and run towards it to acheive the peak of your goal:)"</p>  
-            </div>
+<body>
+<header>
+    <div class="container">
+        <h1>College Event Management System</h1>
+        <nav>
+            <ul>
+                <li><a href="../starting page/index.php">Home</a></li>
+                <li><a href="../auth/register.php">Register</a></li>
+                <li><a href="../starting page/contact.php">Contact Us</a></li>
+                <li><a href="../starting page/aboutus.php">About us</a></li>
+                <li><a href="../auth/login.php">Login</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 </body>
 </html>

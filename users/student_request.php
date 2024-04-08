@@ -108,6 +108,7 @@ label {
     if($result)
         header("Location: student_dashboard.php");
 }
+
   ?>
 </body>
 </html>

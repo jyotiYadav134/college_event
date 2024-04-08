@@ -74,6 +74,21 @@ include 'session.php';
         object-fit: cover;
         border-radius: 50%;
     }
+    .addstudent {
+  background-color: #007bff; /* Blue */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 </style>
 
     <body>
@@ -82,6 +97,7 @@ include 'session.php';
       <div class="gallery">
         <table border="">
           <tr>
+          <button class="addstudent"><a href="addstudent.php">Add Student</a></button>
           
     <th>Id</th>
     <th>Name</th>
@@ -106,7 +122,7 @@ include 'session.php';
             while ($row = mysqli_fetch_assoc($result)) {
              ?>
               <tr>
-                <td><?php echo $row['student_id']; ?></td>
+                <td><?php echo $i; ?></td>
                 <td> <?php echo $row['student_name']; ?> </td>
                 <td> <?php echo $row['phone']; ?> </td>
                 <td> <?php echo $row['semester']; ?> </td>

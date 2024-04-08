@@ -109,7 +109,10 @@ include '../db/dbconnect.php';
         ('$venue','$time','$folder','$location','$name','$description','$date') ";
         $result=mysqli_query($conn,$sql);
         if($result){
-            echo "Event added successfully";
+            echo '<script>
+            alert("event added successfully!");
+            window.location.href = "event.php";</script>';
+        
         }
     }
 ?>
