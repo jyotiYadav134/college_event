@@ -52,8 +52,8 @@
 <?php
     if(isset($_GET['student_id']))
     {include '../db/dbconnect.php';
-        include 'session.php';
-        include 'admin_header.php';
+        include '../admin/session.php';
+            
         $student_id=$_GET['student_id'];
        
         $select_student="select * from student where student_id='$student_id'";
@@ -87,7 +87,7 @@
     ?>
     
     <form action="" method="POST" enctype="multipart/form-data">
-    <h1>EDIT STUDENT</h1>
+    <h1>EDIT PROFILE</h1>
         <label for="name">Name:
             <input type="text" name="name" id="name"  value="<?php echo $std_name?>" >
         </label>
@@ -133,7 +133,7 @@
  
     ?>
     <?php
-include '../footer/adminfooter.php';
+include '../footer/footer.php';
 
     ?>
 </body>

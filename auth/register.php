@@ -107,7 +107,7 @@ if(isset($_POST['register'])){
     $email=$_POST['email'];
     $uname=$_POST['uname'];
     $pass=$_POST['pass'];
-    $password = password_hash($_POST['pass'],PASSWORD_BCRYPT);    
+    $hashPasskey = password_hash($_POST['pass'], PASSWORD_BCRYPT);
 
     $Picture = $_FILES['image']['name'];
         $temp = $_FILES['image']['tmp_name'];
@@ -116,13 +116,19 @@ if(isset($_POST['register'])){
     try{
      
         $sql="INSERT INTO student(student_name, phone, Email, Password, s_user_id, semester,s_picture) 
-        values('$name','$phone','$email','$password','$uname','$semester','$folder')";
+        values('$name','$phone','$email','$hashPasskey','$uname','$semester','$folder')";
         $result=mysqli_query($conn,$sql);
         if($result){
             echo "Registered";
         }
     } catch (mysqli_sql_exception $e) {
         echo 'error:  ' . $e->getMessage();
+    }
+    if($result){
+        echo '<script>
+        alert("registred successfully!");
+        window.location.href = "login.php";</script>';
+    
     }
 }
 ?>

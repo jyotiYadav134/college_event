@@ -46,10 +46,12 @@
     ?></h1>
     <div class="detail">
       <h2>Student Details:</h2>
-      <img src="../admin/<?php echo $row['s_picture']; ?>" alt="Student Image">
-      <p><strong>Name:</strong> <?php echo $rrow['student_name']; ?></p>
+      <img src="<?php echo $rrow['s_picture']; ?>" alt="Student Image">
+      <p><strong>Name:</strong> <?php 
+      echo $rrow['student_name']; ?></p>
       <p><strong>Email:</strong> <?php echo $rrow['Email']; ?></p>
       <p><strong>Semester:</strong> <?php echo $rrow['semester']; ?></p>
+      <button><a href="editprofle.php?student_id=<?php echo $rrow['student_id']; ?>">Edit Profile</a></button>
     </div>
   </div>
 </body>

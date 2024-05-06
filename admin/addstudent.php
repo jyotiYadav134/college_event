@@ -110,6 +110,7 @@ if(isset($_POST['register'])){
     $email=$_POST['email'];
     $uname=$_POST['uname'];
     $pass=$_POST['pass'];
+    $hashPasskey = password_hash($_POST['pass'], PASSWORD_BCRYPT);
     $Picture = $_FILES['image']['name'];
         $temp = $_FILES['image']['tmp_name'];
         $folder = "../admin/pics/" . $Picture;
@@ -117,12 +118,12 @@ if(isset($_POST['register'])){
     try{
      
         $sql="INSERT INTO student(student_name, phone, Email, Password, s_user_id, semester,s_picture) 
-        values('$name','$phone','$email','$pass','$uname','$semester','$folder')";
+        values('$name','$phone','$email','$hashPasskey','$uname','$semester','$folder')";
         $result=mysqli_query($conn,$sql);
         if($result){
             echo '<script>
             alert("student added successfully!");
-            window.location.href = "event.php";</script>';
+            window.location.href = "student.php";</script>';
         
         }
     } catch (mysqli_sql_exception $e) {
@@ -134,5 +135,5 @@ if(isset($_POST['register'])){
 </body>
 </html>
 
-<?php include "../footer/footer.php" ?>
+<?php include "../footer/adminfooter.php" ?>
 

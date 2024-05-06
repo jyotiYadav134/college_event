@@ -112,12 +112,11 @@ include '../db/dbconnect.php';
             echo '<script>
             alert("event added successfully!");
             window.location.href = "event.php";</script>';
-        
         }
     }
 ?>
 </body>
 <?php
-include '../footer/footer.php';
+include '../footer/adminfooter.php';
 ?>
 </html>

@@ -1,75 +1,118 @@
-<?php
-
-include '../db/dbconnect.php';
-include 'admin_header.php';
-include 'session.php';
-if(isset($_SESSION['username'])) {
-    $admin_id = $_SESSION['username']; 
-} else {
-    header("Location: ../auth/login.php"); 
-    exit();
-}?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - College Event Management System</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <style>
-    
-
+    /* General styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f5f5f5; /* Light gray background */
 }
 
+/* Main content padding */
 main {
-    padding: 20px;
+    padding: 30px;
 }
 
+/* Footer styles */
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 10px;
     position: fixed;
     bottom: 0;
     width: 100%;
 }
 
+/* Dashboard Buttons Section */
+.dashboard-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+    margin-bottom: 20px; /* Margin below buttons */
+}
+
+/* Button styling */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Bootstrap primary blue color */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
 </style>
+
 <body>
-<?php
-    //    $admin_id = mysqli_real_escape_string($conn, $user_admin_id);
-        include '../db/dbconnect.php';
-       $admin_query = "SELECT * FROM admin";
-       $result_admin = mysqli_query($conn, $admin_query);
-       $num_admin = mysqli_num_rows($result_admin);
-       // Check if at least one row is returned
-       if ($num_admin > 0) 
-       {
-           $admin_row = mysqli_fetch_array($result_admin);
-           $admin_id = $admin_row['admin_id'];
-           
-        //    echo $num_admin;
-       } 
-       else 
-       {
-           $db_name = "Unknown Admin";
-       }
-   ?>
-
-    <main>
-        <center><h2>Welcome to the Admin Dashboard</h2>
-        <p>Choose an option from the navigation menu to get started.</p></center>
-        
-    </main>
+    <!-- Include the admin header and session handling -->
     <?php
-include '../footer/footer.php';
-?>
+    include '../db/dbconnect.php';
+    include 'admin_header.php';
+    include 'session.php';
+    if (!isset($_SESSION['username'])) {
+        header("Location: ../auth/login.php");
+        exit();
+    }
+    ?>
 
+    <!-- Main content -->
+    <main>
+        <div class="container">
+            <!-- Dashboard Buttons Section -->
+            <div class="dashboard-buttons">
+                <?php
+                // Calculate the count of upcoming events, past events, and students
+                $today = date('Y-m-d');
+
+                // Count of upcoming events
+                $upcoming_event_count_query = "SELECT COUNT(*) as count FROM event WHERE event_date >= '$today'";
+                $upcoming_event_count_result = mysqli_query($conn, $upcoming_event_count_query);
+                $upcoming_event_count = mysqli_fetch_assoc($upcoming_event_count_result)['count'];
+
+                // Count of past events
+                $past_event_count_query = "SELECT COUNT(*) as count FROM event WHERE event_date < '$today'";
+                $past_event_count_result = mysqli_query($conn, $past_event_count_query);
+                $past_event_count = mysqli_fetch_assoc($past_event_count_result)['count'];
+
+                // Count of students
+                $student_count_query = "SELECT COUNT(*) as count FROM student";
+                $student_count_result = mysqli_query($conn, $student_count_query);
+                $student_count = mysqli_fetch_assoc($student_count_result)['count'];
+
+                ?>
+
+                <!-- Buttons with total counts -->
+                <a href="event.php" class="btn">
+                    Upcoming Events (<?php echo $upcoming_event_count; ?>)
+                </a>
+                <a href="event.php" class="btn">
+                    Past Events (<?php echo $past_event_count; ?>)
+                </a>
+                <a href="students.php" class="btn">
+                    Students (<?php echo $student_count; ?>)
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Include the admin footer -->
+    <?php include '../footer/adminfooter.php'; ?>
 </body>
+
 </html>

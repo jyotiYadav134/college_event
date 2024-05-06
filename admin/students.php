@@ -11,7 +11,7 @@ include 'session.php';
     }
 
     .container {
-        max-width: 1200px;
+        max-width: 1500px;
         margin: 20px auto;
         padding: 20px;
         background-color: #fff;
@@ -72,7 +72,7 @@ include 'session.php';
         width: 100px;
         height: 100px;
         object-fit: cover;
-        border-radius: 50%;
+        border-radius: 4px;
     }
     .addstudent {
   background-color: #007bff; /* Blue */
@@ -95,7 +95,7 @@ include 'session.php';
     <div class="container"> 
     <h1>Students</h1>
       <div class="gallery">
-        <table border="">
+        <table border="1">
           <tr>
           <button class="addstudent"><a href="addstudent.php">Add Student</a></button>
           
@@ -103,11 +103,10 @@ include 'session.php';
     <th>Name</th>
     <th>Phone</th>
     <th>Semester</th>
-    <th>Password</th>
-    <th>Username</th>
+    
+
     <th>Task</th>
     <th>Image</th>
-    
     <th>Action</th>
     
           </tr>
@@ -122,16 +121,19 @@ include 'session.php';
             while ($row = mysqli_fetch_assoc($result)) {
              ?>
               <tr>
-                <td><?php echo $i; ?></td>
+                <td><?php echo $i;?></td>
                 <td> <?php echo $row['student_name']; ?> </td>
                 <td> <?php echo $row['phone']; ?> </td>
                 <td> <?php echo $row['semester']; ?> </td>
-                <td> <?php echo $row['Password']; ?> </td>
-                <td> <?php echo $row['s_user_id']; ?> </td>
-                <td> <?php echo $row['student_status']; ?> </td>
+               
+               
+                <td> <?php 
+                $imgSrc=substr($row['s_picture'],14);
+                echo $imgSrc;
+                echo $row['student_status']; ?> </td>
 
 
-                <td><img  src="<?php echo $row['s_picture']; ?>"></td>
+                <td><img  src="./pics/<?php echo $imgSrc ; ?>"></td>
                 
                 <td><a href="edit_student.php?student_id=<?php echo $row['student_id'] ?>">Edit</a> |
                 <a href="delete_student.php?student_id=<?php echo $row['student_id'] ?>">Delete</a></td>
@@ -147,5 +149,5 @@ include 'session.php';
 
 </body>
     <?php
-include '../footer/footer.php';
+include '../footer/adminfooter.php';
 ?>

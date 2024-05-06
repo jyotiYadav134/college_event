@@ -129,16 +129,19 @@
         $folder = "./pics/" . $update_picture;
         move_uploaded_file($temp, $folder);
         // echo $folder;
-        $sql="UPDATE event set venue='$venue',e_time='$time',e_picture='$folder', e_location='$location',event_name='$name',description='$description',event_date='$date' ";
+        $sql="UPDATE event set venue='$venue',e_time='$time',e_picture='$folder', e_location='$location',
+        event_name='$name',description='$description',event_date='$date' where event_id='$event_id' ";
         $result=mysqli_query($conn,$sql);
         if($result){
-            echo "Edited successfully";
+          echo '<script>
+          alert("event edited successfully!");
+          window.location.href = "event.php";</script>';  
         }
     }
 ?>
 </body>
 <?php
-include '../footer/footer.php';
+include '../footer/adminfooter.php';
 
     ?>
 </body>

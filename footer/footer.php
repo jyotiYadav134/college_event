@@ -11,13 +11,16 @@
             background-color: #f0f0f0;
         }
         footer {
+            
             background-color: #9DD9F3; 
             color: #fff;
             padding: 50px;
             display: flex;
             justify-content: space-around;
             align-items: flex-start;
+            bottom:0;
             flex-wrap: wrap;
+            
         }
         footer section {
             flex: 1;

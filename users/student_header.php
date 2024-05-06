@@ -64,6 +64,7 @@
                 <ul class="nav-links">
                     <li><a href="student_dashboard.php">Profile</a></li>
                     <li><a href="events.php">Event List</a></li>
+                    <li><a href="participants.php">Participated List</a></li>
                     <li><a href="../auth/logout.php">Logout</a></li>
                 </ul>
             </nav>

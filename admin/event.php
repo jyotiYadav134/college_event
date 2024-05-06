@@ -151,5 +151,5 @@ body {
 
 </body>
     <?php
-include '../footer/footer.php';
+include '../footer/adminfooter.php';
 ?>

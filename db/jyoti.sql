@@ -22,7 +22,7 @@ CREATE TABLE  student (
     Password VARCHAR(255) NOT NULL,
     s_user_id VARCHAR(50) NOT NULL,
     semester VARCHAR(20) NOT NULL,
-    student_status VARCHAR(20) default NULL
+    s_picture VARCHAR(255) NOT NULL
 );
 create table admin(
 	admin_id int PRIMARY KEY AUTO_INCREMENT,
@@ -31,12 +31,14 @@ create table admin(
 );
 
 create table event(
-event_id int PRIMARY KEY AUTO_INCREMENT,
+    event_id int PRIMARY KEY AUTO_INCREMENT,
     venue varchar(255) not null,
     e_time time not null,
-    e_status varchar(20),
-    e_picture varchar(255),
-    e_location varchar(255)
+    e_picture varchar(255) not null,
+    e_location varchar(255) not null,
+    event_name varchar(255) not null,
+    description varchar(255),
+    event_date date not null
 );
 create table volunteer(
 v_id int PRIMARY KEY AUTO_INCREMENT,
@@ -45,7 +47,7 @@ v_id int PRIMARY KEY AUTO_INCREMENT,
     std_id int,
     evet_id int,
     FOREIGN KEY(std_id) REFERENCES student(student_id),
-    FOREIGN KEY(evet_id) REFERENCES eevent(event_id)
+    FOREIGN KEY(evet_id) REFERENCES event(event_id)
 );
 CREATE TABLE participants(
     p_id int PRIMARY KEY AUTO_INCREMENT,
@@ -54,5 +56,5 @@ CREATE TABLE participants(
  	stud_id int,
     evt_id int,
     FOREIGN KEY(stud_id) REFERENCES student(student_id),
-    FOREIGN KEY(evt_id) REFERENCES eevent(event_id)
+    FOREIGN KEY(evt_id) REFERENCES event(event_id)
 );

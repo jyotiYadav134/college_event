@@ -107,7 +107,7 @@ include 'session.php';
                 $sql = "SELECT * FROM student";
                 $result = mysqli_query($conn, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
-                    $eid = $row['e_id'];
+                    $eid = $row['student_id'];
                     $ssql = "SELECT * from event where event_id='$eid'";
                     $rresult = mysqli_query($conn, $ssql);
                     $rrow = mysqli_fetch_assoc($rresult);
