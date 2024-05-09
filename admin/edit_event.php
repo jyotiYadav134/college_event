@@ -64,7 +64,7 @@
         include 'session.php';
         $event_id=$_GET['event_id'];
        
-        $select_event="select * from event where event_id='$event_id'";
+        $select_event="select * from event where event_id='$event_id' ORDER BY event_date DESC";
         $result_select=mysqli_query($conn,$select_event);
         if(mysqli_num_rows($result_select))
         {

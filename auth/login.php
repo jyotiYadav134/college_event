@@ -63,7 +63,7 @@ if (isset($_POST['login'])) {
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 30px;
         }
 
         h1 {

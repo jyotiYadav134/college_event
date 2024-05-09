@@ -51,10 +51,12 @@
 <body>
 <?php
     if(isset($_GET['student_id']))
-    {include '../db/dbconnect.php';
+    {
+        $student_id=$_GET['student_id'];
+    }
+    include '../db/dbconnect.php';
         include 'session.php';
         include 'admin_header.php';
-        $student_id=$_GET['student_id'];
        
         $select_student="select * from student where student_id='$student_id'";
         $result_select=mysqli_query($conn,$select_student);
@@ -77,12 +79,9 @@
             
                 $std_picture= basename($row['s_picture']);
               
-                
-          
-                
             }
         }
-    }
+    
         
     ?>
     
@@ -115,22 +114,18 @@
         $phone=$_POST['phone'];
         $semester=$_POST['semester'];
         $username=$_POST['username'];
-       
         $Picture = $_FILES['image']['name'];
         $temp = $_FILES['image']['tmp_name'];
-        $folder = "pics/" . $Picture;
-        move_uploaded_file($temp, $folder);
-        echo $folder;
-        $sid=$_GET['student_id'];
-        $sql="UPDATE student set student_name='$name',phone='$phone',s_user_id='$username',semester='$semester',s_picture='$folder'";
-   
+        $folder = "../admin/pics/" . $Picture;
+        move_uploaded_file($temp, $folder);        
+        $sql="UPDATE student set student_name='$name',phone='$phone',s_user_id='$username',semester='$semester',s_picture='$folder' where student_id='$student_id'";
         $result=mysqli_query($conn,$sql);
         if($result){
-            echo "edited successfully";
-        }
-
-    }
- 
+            echo '<script>
+            alert("student edited successfully!");
+            window.location.href = "students.php";</script>';  
+          }
+    }   
     ?>
     <?php
 include '../footer/adminfooter.php';

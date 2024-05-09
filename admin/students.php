@@ -91,63 +91,60 @@ include 'session.php';
 }
 </style>
 
-    <body>
-    <div class="container"> 
+<body>
+<div class="container">
     <h1>Students</h1>
-      <div class="gallery">
+    <div class="gallery">
         <table border="1">
-          <tr>
-          <button class="addstudent"><a href="addstudent.php">Add Student</a></button>
-          
-    <th>Id</th>
-    <th>Name</th>
-    <th>Phone</th>
-    <th>Semester</th>
-    
+            <tr>
+                <button class="addstudent"><a href="addstudent.php">Add Student</a></button>
 
-    <th>Task</th>
-    <th>Image</th>
-    <th>Action</th>
-    
-          </tr>
-          <?php
-          include '../db/dbconnect.php';
-
-          $sql = "SELECT * FROM student";
-          $result = mysqli_query($conn, $sql);
-          $num = mysqli_num_rows($result);
-          if ($num > 0) {
-            $i = 1;
-            while ($row = mysqli_fetch_assoc($result)) {
-             ?>
-              <tr>
-                <td><?php echo $i;?></td>
-                <td> <?php echo $row['student_name']; ?> </td>
-                <td> <?php echo $row['phone']; ?> </td>
-                <td> <?php echo $row['semester']; ?> </td>
-               
-               
-                <td> <?php 
-                $imgSrc=substr($row['s_picture'],14);
-                echo $imgSrc;
-                echo $row['student_status']; ?> </td>
-
-
-                <td><img  src="./pics/<?php echo $imgSrc ; ?>"></td>
-                
-                <td><a href="edit_student.php?student_id=<?php echo $row['student_id'] ?>">Edit</a> |
-                <a href="delete_student.php?student_id=<?php echo $row['student_id'] ?>">Delete</a></td>
-              </tr>
-
-              <?php $i++; }
-          }
-          ?>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Semester</th>
+                <th>Task</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+            <?php
+            include '../db/dbconnect.php';
+            
+            $sql = "SELECT * FROM student";
+            $result = mysqli_query($conn, $sql);
+            $num = mysqli_num_rows($result);
+            if ($num > 0) {
+                $i = 1;
+                while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+                    <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $row['student_name']; ?></td>
+                        <td><?php echo $row['phone']; ?></td>
+                        <td><?php echo $row['semester']; ?></td>
+                        <td><?php echo $row['student_status']; ?></td>
+                        <td>
+                            <?php
+                            $imgSrc = substr($row['s_picture'], 14);
+                            echo "<img src='./pics/$imgSrc' alt='Student Image'>";
+                            ?>
+                        </td>
+                        <td>
+                            <a href="edit_student.php?student_id=<?php echo $row['student_id']; ?>">Edit</a> |
+                            <a href="delete_student.php?student_id=<?php echo $row['student_id']; ?>" onclick="return confirm('Are you sure you want to delete this student?');">Delete</a>
+                        </td>
+                    </tr>
+            <?php
+                    $i++;
+                }
+            }
+            ?>
         </table>
-
-      </div>
-       </div>
+    </div>
+</div>
 
 </body>
-    <?php
+<?php
 include '../footer/adminfooter.php';
 ?>
+

@@ -8,56 +8,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - College Event Management System</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; /* Light gray background */
+        }
+
+        /* Main content padding */
+        main {
+            padding: 30px;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Dashboard Buttons Section */
+        .dashboard-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between buttons */
+            margin-bottom: 20px; /* Margin below buttons */
+        }
+
+        /* Button styling */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            width: 200px;
+            height:200px;
+            background-color: #007bff; /* Bootstrap primary blue color */
+            color: #fff;
+            text-decoration: none;
+            text-align:center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 20px; /* Increase the font size */
+        }
+
+        .btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .count{
+            font-size:60px;
+            color:black;
+        }
+    </style>
 </head>
-<style>
-    /* General styles */
-body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5; /* Light gray background */
-}
-
-/* Main content padding */
-main {
-    padding: 30px;
-}
-
-/* Footer styles */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-/* Dashboard Buttons Section */
-.dashboard-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Space between buttons */
-    margin-bottom: 20px; /* Margin below buttons */
-}
-
-/* Button styling */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff; /* Bootstrap primary blue color */
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-</style>
 
 <body>
     <!-- Include the admin header and session handling -->
@@ -99,13 +106,23 @@ footer {
 
                 <!-- Buttons with total counts -->
                 <a href="event.php" class="btn">
-                    Upcoming Events (<?php echo $upcoming_event_count; ?>)
+                    Upcoming Events 
+                    <p class='count'>
+                    <?php echo $upcoming_event_count; ?>
+                    </p>
                 </a>
                 <a href="event.php" class="btn">
-                    Past Events (<?php echo $past_event_count; ?>)
+                    Past Events 
+                    <p class='count'>
+                    <?php echo $past_event_count; ?>
+                    </p>
                 </a>
                 <a href="students.php" class="btn">
-                    Students (<?php echo $student_count; ?>)
+                Students
+                <p class='count'>
+                <?php echo $student_count; ?>
+                </p>
+                    
                 </a>
             </div>
         </div>

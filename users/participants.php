@@ -18,21 +18,17 @@
         <div class="container">
             <h2>Events You Participated In</h2>
             <div class="events">
-                <!-- Event listings will be dynamically inserted here -->
                 <?php
                 // Connect to the database
                 include '../db/dbconnect.php';
-
-                // Assume the student_id is stored in the session
-               ../admin/session_start();
-                $student_id = $_SESSION['student_id'];
-
+                session_start();
+                $student_name = $_SESSION['username'];
                 // Query to fetch events the student has participated in
                 $sql = "
-                    SELECT e.event_id, e.event_name, e.event_date, e.e_time, e.venue, e.e_picture
-                    FROM event_participation ep
-                    JOIN event e ON ep.event_id = e.event_id
-                    WHERE ep.student_id = '$student_id';
+                    SELECT * from event 
+                    join student on student.e_id=event.event_id
+                    where student.s_user_id='$student_name'
+                    ;
                 ";
                 $result = mysqli_query($conn, $sql);
 
@@ -46,7 +42,8 @@
                         echo '<p>Date: ' . htmlspecialchars($row['event_date']) . '</p>';
                         echo '<p>Time: ' . htmlspecialchars($row['e_time']) . '</p>';
                         echo '<p>Venue: ' . htmlspecialchars($row['venue']) . '</p>';
-                        echo '<a href="event.php?event_id=' . $row['event_id'] . '" class="btn">Learn More</a>';
+                        echo '<p>Your Status: ' . htmlspecialchars($row['student_status']) . '</p>';
+                       
                         echo '</div>';
                     }
                 } else {

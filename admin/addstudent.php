@@ -37,6 +37,8 @@ include 'session.php';?>
         input[type="text"],
         input[type="date"],
         input[type="time"],
+        input[type="password"],
+        input[type="email"],
         select {
             width: 100%;
             padding: 10px;
@@ -117,13 +119,13 @@ if(isset($_POST['register'])){
         move_uploaded_file($temp, $folder);
     try{
      
-        $sql="INSERT INTO student(student_name, phone, Email, Password, s_user_id, semester,s_picture) 
-        values('$name','$phone','$email','$hashPasskey','$uname','$semester','$folder')";
+        $sql="INSERT INTO student(student_name, phone, Email, Password, s_user_id, semester,s_picture,student_status) 
+        values('$name','$phone','$email','$hashPasskey','$uname','$semester','$folder','not enrolled')";
         $result=mysqli_query($conn,$sql);
         if($result){
             echo '<script>
             alert("student added successfully!");
-            window.location.href = "student.php";</script>';
+            window.location.href = "students.php";</script>';
         
         }
     } catch (mysqli_sql_exception $e) {

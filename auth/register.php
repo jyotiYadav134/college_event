@@ -14,7 +14,7 @@
 .ccontainer {
     max-width: 400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 50px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -115,8 +115,8 @@ if(isset($_POST['register'])){
         move_uploaded_file($temp, $folder);
     try{
      
-        $sql="INSERT INTO student(student_name, phone, Email, Password, s_user_id, semester,s_picture) 
-        values('$name','$phone','$email','$hashPasskey','$uname','$semester','$folder')";
+        $sql="INSERT INTO student(student_name, phone, Email, Password, s_user_id, semester,s_picture,student_status) 
+        values('$name','$phone','$email','$hashPasskey','$uname','$semester','$folder','not enrolled')";
         $result=mysqli_query($conn,$sql);
         if($result){
             echo "Registered";

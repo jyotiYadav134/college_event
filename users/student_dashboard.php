@@ -31,6 +31,9 @@
       margin: 10px 0;
       color: #666;
     }
+    img{
+      width: 20%;
+    }
   </style>
 </head>
 <body>

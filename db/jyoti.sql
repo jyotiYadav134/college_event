@@ -20,9 +20,11 @@ CREATE TABLE  student (
     phone VARCHAR(15) NOT NULL,
     Email VARCHAR(255) UNIQUE NOT NULL,
     Password VARCHAR(255) NOT NULL,
-    s_user_id VARCHAR(50) NOT NULL,
+    s_user_id VARCHAR(50) NOT NULL UNIQUE,
     semester VARCHAR(20) NOT NULL,
-    s_picture VARCHAR(255) NOT NULL
+    s_picture VARCHAR(255) NOT NULL,
+    student_status varchar(255),
+    e_id int 
 );
 create table admin(
 	admin_id int PRIMARY KEY AUTO_INCREMENT,

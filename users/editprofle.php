@@ -118,15 +118,16 @@
        
         $Picture = $_FILES['image']['name'];
         $temp = $_FILES['image']['tmp_name'];
-        $folder = "pics/" . $Picture;
+        $folder = "../admin/pics/" . $Picture;
         move_uploaded_file($temp, $folder);
-        echo $folder;
         $sid=$_GET['student_id'];
-        $sql="UPDATE student set student_name='$name',phone='$phone',s_user_id='$username',semester='$semester',s_picture='$folder'";
-   
+        $sql="UPDATE student set student_name='$name',phone='$phone',s_user_id='$username',semester='$semester',s_picture='$folder' where student_id='$sid'";
+        
         $result=mysqli_query($conn,$sql);
         if($result){
-            echo "edited successfully";
+            echo '<script>
+            alert("profile edited successfully!");
+            window.location.href = "student_dashboard.php";</script>';
         }
 
     }
