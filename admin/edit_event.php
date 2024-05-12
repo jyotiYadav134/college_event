@@ -54,6 +54,27 @@
     text-align: center;
 }
 </style>
+<script>
+        function validateDate() {
+            // Get the date input element
+            const dateInput = document.getElementById('date');
+            // Get the selected date
+            const selectedDate = new Date(dateInput.value);
+            // Get the current date
+            const currentDate = new Date();
+            // Reset time components of current date for comparison
+            currentDate.setHours(0, 0, 0, 0);
+
+            // Check if the selected date is before the current date
+            if (selectedDate < currentDate) {
+                alert('Event date cannot be in the past. Please choose a future date.');
+                // Prevent form submission
+                return false;
+            }
+            // Allow form submission
+            return true;
+        }
+    </script>
 </head>
 <body>
 
@@ -86,7 +107,7 @@
     }
         
     ?>
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateDate();">
     <h1>EDIT EVENT</h1>
     <label for="name">Event Name:</label>
             <input type="text" value='<?php echo $evt_name ?>' id="name" name="event_name">
@@ -136,6 +157,11 @@
           echo '<script>
           alert("event edited successfully!");
           window.location.href = "event.php";</script>';  
+        }
+        else {
+            echo '<script>
+                alert("Failed to add event. Please try again.");
+            </script>';
         }
     }
 ?>

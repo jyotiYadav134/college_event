@@ -1,5 +1,10 @@
 <?php include "student_header.php";
 include '../db/dbconnect.php';
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: ../auth/login.php");
+    exit;
+}
 ?>
 <style>
     .event-container {
@@ -70,7 +75,13 @@ include '../db/dbconnect.php';
     <h2 style="color: #007bff;">Events</h2>
     <div class="event-container">
         <?php
-        $sql = "SELECT * FROM event ";
+        $current_date = date('Y-m-d');
+        $sql = "
+            SELECT * 
+            FROM event 
+            WHERE event_date >= '$current_date';
+        ";
+        
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
         ?>

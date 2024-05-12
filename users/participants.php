@@ -1,4 +1,10 @@
-<?php include "student_header.php"; ?>
+<?php include "student_header.php"; 
+                session_start();
+                if (!isset($_SESSION['username'])) {
+                    header("Location: ../auth/login.php");
+                    exit;
+                }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,14 +27,26 @@
                 <?php
                 // Connect to the database
                 include '../db/dbconnect.php';
-                session_start();
                 $student_name = $_SESSION['username'];
                 // Query to fetch events the student has participated in
                 $sql = "
-                    SELECT * from event 
-                    join student on student.e_id=event.event_id
-                    where student.s_user_id='$student_name'
-                    ;
+                SELECT
+                
+                e.event_name,
+                e.venue,
+                e.e_time,
+                e.e_picture,
+                e.description,
+                e.event_date,
+                p.p_status AS participant_status,
+                v.v_status AS volunteer_status
+            FROM
+                student s
+            LEFT JOIN participants p ON s.student_id = p.stud_id
+            LEFT JOIN volunteer v ON s.student_id = v.std_id
+            JOIN event e ON (p.evt_id = e.event_id OR v.evet_id = e.event_id)
+            WHERE
+                s.s_user_id = '$student_name';
                 ";
                 $result = mysqli_query($conn, $sql);
 
@@ -42,8 +60,7 @@
                         echo '<p>Date: ' . htmlspecialchars($row['event_date']) . '</p>';
                         echo '<p>Time: ' . htmlspecialchars($row['e_time']) . '</p>';
                         echo '<p>Venue: ' . htmlspecialchars($row['venue']) . '</p>';
-                        echo '<p>Your Status: ' . htmlspecialchars($row['student_status']) . '</p>';
-                       
+                        
                         echo '</div>';
                     }
                 } else {

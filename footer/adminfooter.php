@@ -15,5 +15,5 @@
 </style>
 
 <footer class="footer">
-    <p>&copy; 2024 YourCompanyName. All rights reserved.</p>
+    <p>&copy; 2024 College Event Management System.</p>
 </footer>

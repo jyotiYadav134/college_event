@@ -60,3 +60,5 @@ CREATE TABLE participants(
     FOREIGN KEY(stud_id) REFERENCES student(student_id),
     FOREIGN KEY(evt_id) REFERENCES event(event_id)
 );
+Create database dav;
+cret

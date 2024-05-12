@@ -38,6 +38,7 @@ nav ul li a:hover {
             <ul>
                 <li><a href="../admin/admin_dashboard.php">Dashboard</a></li>
                 <li><a href="event.php">Events</a></li>
+                <li><a href="pastevent.php">Past Events</a></li>
                 <li><a href="students.php">Students</a></li>
                 <li><a href="admin_request.php">Requests</a></li>
                 <li><a href="../auth/logout.php">Logout</a></li>

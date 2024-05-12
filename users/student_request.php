@@ -96,7 +96,10 @@
     // PHP section to handle form submission
     include '../db/dbconnect.php'; // Include your database connection file
     session_start();
-
+    if (!isset($_SESSION['username'])) {
+        header("Location: ../auth/login.php");
+        exit;
+    }
     if (isset($_POST['submit'])) {
         $currentUser = $_SESSION['username'];
         $request_type = $_POST['request_type'];
@@ -130,7 +133,7 @@
 
             if ($updateResult) {
                 // Redirect to student dashboard if the update is successful
-                header("Location: student_dashboard.php");
+                header("Location: events.php");
                 exit();
             }
         }

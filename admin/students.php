@@ -103,7 +103,7 @@ include 'session.php';
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Semester</th>
-                <th>Task</th>
+                <th>Status</th>
                 <th>Image</th>
                 <th>Action</th>
             </tr>

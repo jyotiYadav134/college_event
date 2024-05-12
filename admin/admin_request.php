@@ -104,22 +104,21 @@ include 'session.php';
             <tbody>
                 <?php
                 include '../db/dbconnect.php';
-                $sql = "SELECT * FROM student";
+                $sql = "SELECT * FROM student where student_status!='not enrolled'";
                 $result = mysqli_query($conn, $sql);
-                
                 while ($row = mysqli_fetch_assoc($result)) {
-                    $eid=$row['e_id'];
+                    $eid = $row['e_id'];
                     $ssql = "SELECT * from event where event_id='$eid'";
                     $rresult = mysqli_query($conn, $ssql);
                     $rrow = mysqli_fetch_assoc($rresult);
-                    if($num=mysqli_num_rows($rresult)>0){
+                    $event_name=$rrow['event_name'];
                     echo "<tr>";    
                     echo "<td>" . $row['student_name'] . "</td>";
                     echo "<td>";
                     if ($row['student_status'] == 'pending_volunteer') {
-                        echo "Volunteer for " . $rrow['event_name'];
+                        echo "Volunteer for ".$event_name;
                     } elseif ($row['student_status'] == 'pending_participant') {
-                        echo "Participant for " . $rrow['event_name'];
+                        echo "Participant for " . $event_name;
                     }
                     echo "</td>";
                     echo "<td>";
@@ -139,7 +138,6 @@ include 'session.php';
                     echo "</td>";
                     echo "</tr>";
                 }
-            }
                 ?>
             </tbody>
         </table>

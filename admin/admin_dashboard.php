@@ -46,11 +46,11 @@
             display: inline-block;
             padding: 10px 20px;
             width: 200px;
-            height:200px;
+            height: 200px;
             background-color: #007bff; /* Bootstrap primary blue color */
             color: #fff;
             text-decoration: none;
-            text-align:center;
+            text-align: center;
             border-radius: 5px;
             transition: background-color 0.3s ease;
             font-size: 20px; /* Increase the font size */
@@ -59,9 +59,10 @@
         .btn:hover {
             background-color: #0056b3; /* Darker blue on hover */
         }
-        .count{
-            font-size:60px;
-            color:black;
+
+        .count {
+            font-size: 60px;
+            color: black;
         }
     </style>
 </head>
@@ -72,10 +73,6 @@
     include '../db/dbconnect.php';
     include 'admin_header.php';
     include 'session.php';
-    if (!isset($_SESSION['username'])) {
-        header("Location: ../auth/login.php");
-        exit();
-    }
     ?>
 
     <!-- Main content -->
@@ -84,45 +81,84 @@
             <!-- Dashboard Buttons Section -->
             <div class="dashboard-buttons">
                 <?php
-                // Calculate the count of upcoming events, past events, and students
+                // Calculate the count of upcoming events, past events, students, and pending requests
                 $today = date('Y-m-d');
 
                 // Count of upcoming events
                 $upcoming_event_count_query = "SELECT COUNT(*) as count FROM event WHERE event_date >= '$today'";
                 $upcoming_event_count_result = mysqli_query($conn, $upcoming_event_count_query);
-                $upcoming_event_count = mysqli_fetch_assoc($upcoming_event_count_result)['count'];
+
+                // Error handling for the upcoming events query
+                if ($upcoming_event_count_result) {
+                    $upcoming_event_count = mysqli_fetch_assoc($upcoming_event_count_result)['count'];
+                } else {
+                    echo "Error fetching upcoming event count: " . mysqli_error($conn);
+                    $upcoming_event_count = 0; // Default to 0 if there's an error
+                }
 
                 // Count of past events
                 $past_event_count_query = "SELECT COUNT(*) as count FROM event WHERE event_date < '$today'";
                 $past_event_count_result = mysqli_query($conn, $past_event_count_query);
-                $past_event_count = mysqli_fetch_assoc($past_event_count_result)['count'];
+
+                // Error handling for the past events query
+                if ($past_event_count_result) {
+                    $past_event_count = mysqli_fetch_assoc($past_event_count_result)['count'];
+                } else {
+                    echo "Error fetching past event count: " . mysqli_error($conn);
+                    $past_event_count = 0; // Default to 0 if there's an error
+                }
 
                 // Count of students
                 $student_count_query = "SELECT COUNT(*) as count FROM student";
                 $student_count_result = mysqli_query($conn, $student_count_query);
-                $student_count = mysqli_fetch_assoc($student_count_result)['count'];
 
+                // Error handling for the students query
+                if ($student_count_result) {
+                    $student_count = mysqli_fetch_assoc($student_count_result)['count'];
+                } else {
+                    echo "Error fetching student count: " . mysqli_error($conn);
+                    $student_count = 0; // Default to 0 if there's an error
+                }
+
+                // Count of pending requests
+                // Calculate pending requests count based on participants and volunteers
+                $pending_request_count_query = "
+                    SELECT 
+                        (SELECT COUNT(*) FROM participants WHERE p_status = 'pending') +
+                        (SELECT COUNT(*) FROM volunteer WHERE v_status = 'pending')
+                    AS count";
+                
+                $pending_request_count_result = mysqli_query($conn, $pending_request_count_query);
+
+                // Error handling for the pending requests query
+                if ($pending_request_count_result) {
+                    $pending_request_count = mysqli_fetch_assoc($pending_request_count_result)['count'];
+                } else {
+                    echo "Error fetching pending request count: " . mysqli_error($conn);
+                    $pending_request_count = 0; // Default to 0 if there's an error
+                }
                 ?>
 
                 <!-- Buttons with total counts -->
                 <a href="event.php" class="btn">
-                    Upcoming Events 
+                    Upcoming Events
                     <p class='count'>
                     <?php echo $upcoming_event_count; ?>
                     </p>
                 </a>
-                <a href="event.php" class="btn">
-                    Past Events 
+                <a href="pastevent.php" class="btn">
+                    Past Events
                     <p class='count'>
                     <?php echo $past_event_count; ?>
                     </p>
                 </a>
                 <a href="students.php" class="btn">
-                Students
-                <p class='count'>
-                <?php echo $student_count; ?>
-                </p>
-                    
+                    Students
+                    <p class='count'>
+                    <?php echo $student_count; ?>
+                    </p>
+                </a>
+                
                 </a>
             </div>
         </div>

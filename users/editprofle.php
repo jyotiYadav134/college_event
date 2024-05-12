@@ -50,10 +50,12 @@
 </head>
 <body>
 <?php
-    if(isset($_GET['student_id']))
-    {include '../db/dbconnect.php';
-        include '../admin/session.php';
-            
+
+include '../db/dbconnect.php';
+    session_start();
+    if(isset($_GET['student_id'])==$_SESSION['id'])
+    {   
+        
         $student_id=$_GET['student_id'];
        
         $select_student="select * from student where student_id='$student_id'";
@@ -82,6 +84,10 @@
                 
             }
         }
+    }else{
+       echo '<script>
+               alert("Error! While editing");
+               window.location.href = "student_dashboard.php";</script>';
     }
         
     ?>
@@ -131,7 +137,6 @@
         }
 
     }
- 
     ?>
     <?php
 include '../footer/footer.php';

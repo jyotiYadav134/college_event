@@ -1,5 +1,11 @@
 <?php
 session_start();
+    if(isset($_SESSION['user'])){
+        header('location:../admin/admin_dashboard.php');
+    }
+    if(isset($_SESSION['username'])){
+        header('Location: ../users/student_dashboard.php');
+    }
 include "../head/top.php";
 include '../db/dbconnect.php';
 
@@ -14,7 +20,8 @@ if (isset($_POST['login'])) {
         $num = mysqli_num_rows($result);
 
         if ($num > 0) {
-            $_SESSION['username'] = $username;
+            $_SESSION['user'] = $username;
+            $_SESSION['id']=$row['student_id'];
             header("Location: ../admin/admin_dashboard.php");
             exit();
         } else {
@@ -31,6 +38,7 @@ if (isset($_POST['login'])) {
                 $passwordHash = $row['Password'];
                 if (password_verify($password, $passwordHash)) {
                     $_SESSION['username'] = $username;
+                    $_SESSION['id']=$row['student_id'];
                     header("Location: ../users/student_dashboard.php");
                     exit();
                 }

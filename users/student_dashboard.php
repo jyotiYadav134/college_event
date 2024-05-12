@@ -1,4 +1,10 @@
-<?php include "student_header.php" ?>
+<?php include "student_header.php";
+    session_start();
+    if (!isset($_SESSION['username'])) {
+      header("Location: ../auth/login.php");
+      exit;
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +46,6 @@
   <div class="container">
     <h1>Welcome <?php
     include '../db/dbconnect.php';
-    session_start();
     $user=$_SESSION['username'] ;
     echo $user;
     $ssql ="SELECT * from student where s_user_id='$user'";

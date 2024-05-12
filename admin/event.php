@@ -119,7 +119,7 @@ body {
           <?php
           include '../db/dbconnect.php';
 
-          $sql = "SELECT * FROM event";
+          $sql = "SELECT * FROM event ORDER BY event_date DESC";
           $result = mysqli_query($conn, $sql);
           $num = mysqli_num_rows($result);
           if ($num > 0) {

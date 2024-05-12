@@ -72,9 +72,20 @@ input[type="submit"]:hover {
                 <input type="text" name="phone" id="phone" required>
             </div>
             <div class="form-group">
-                <label for="semester">Semester:</label>
-                <input type="text" name="semester" id="semester" required>
-            </div>
+    <label for="semester">Semester:</label>
+    <select name="semester" id="semester" required>
+        <option value="" disabled selected>Select a semester</option>
+        <option value="1">1st</option>
+        <option value="2">2nd</option>
+        <option value="3">3rd</option>
+        <option value="4">4th</option>
+        <option value="5">5th</option>
+        <option value="6">6th</option>
+        <option value="7">7th</option>
+        <option value="8">8th</option>
+    </select>
+</div>
+
             <div class="form-group">
                 <label for="mail">Email:</label>
                 <input type="email" name="email" id="email" required>
